@@ -34,8 +34,9 @@ services:
     ports:
       - '7000:80'
     environment:
-      ak_admin_database: database
-      MYSQL_ROOT_PASSWORD: cdmllove
+      PMA_HOST: ak_admin_database
+      PMA_USER: root
+      PMA_PASSWORD: cdmllove
     networks:
       - vietd_root_network
 
