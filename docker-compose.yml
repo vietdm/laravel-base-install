@@ -46,4 +46,4 @@ volumes:
 
 networks:
   vietd_root_network:
-    external: true
+    driver: bridge
