@@ -1,7 +1,18 @@
 #!/bin/bash
 
+dco_path="docker-compose.yml"
+nginx_conf_path=".docker/nginx.conf"
+config_path="config.txt"
+
 new_line() {
   echo "\n====\n"
+}
+
+require_file_exist() {
+  if [ ! -f "$1" ]; then
+    echo "$1 is not exist!"
+    exit 1
+  fi
 }
 
 check_function_system_exist() {
@@ -39,9 +50,7 @@ create_file_with_tmp() {
 }
 
 main() {
-  dco_path="docker-compose.yml"
-  nginx_conf_path=".docker/nginx.conf"
-
+  require_file_exist $config_path
   check_function_system_exist "dos2unix"
   check_function_system_exist "perl"
 
@@ -51,7 +60,7 @@ main() {
 
   new_line
 
-  . "$PWD/config.txt"
+  . "$PWD/$config_path"
 
   echo 'Create docker-compose.yml ...'
 
@@ -87,6 +96,9 @@ main() {
   mv ./$LARAVEL_TEMP_FOLDER/* .
   mv ./$LARAVEL_TEMP_FOLDER/.* .
   rm -r $LARAVEL_TEMP_FOLDER
+  echo "./docker-compose.yml
+        ./.docker/nginx.conf
+        ./config.txt" >> .gitignore
 
   echo "\nDone!\n"
 }
