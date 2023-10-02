@@ -15,13 +15,13 @@ The **Laravel Base Project** is a starter template designed to simplify the proc
 1. Clone this repository to your local machine:
 
     ```bash
-    git clone https://github.com/vietdm/base_laravel.git
+    git clone https://github.com/vietdm/laravel-base-install.git
     ```
 
-2. Rename ```base_laravel``` to the project name you desire:
+2. Rename ```laravel-base-install``` to the project name you desire:
 
     ```bash
-    cp -r base_laravel new_name
+    cp -r laravel-base-install new_name
     ```
    
 3. Navigate to the project directory:
