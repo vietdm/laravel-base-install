@@ -1,7 +1,7 @@
 server {
     listen 80;
 
-    server_name dev.local;
+    server_name NGINX_DOMAIN;
 
     root /app/public;
 
@@ -10,7 +10,7 @@ server {
     error_log /var/log/nginx/app_error.log;
     access_log /var/log/nginx/app_access.log;
 
-    client_max_body_size 2G;
+    client_max_body_size NGINX_MAX_BODY_SIZE;
 
     location / {
         try_files $uri $uri/ /index.php?$query_string;
@@ -19,7 +19,7 @@ server {
     location ~ \.php$ {
         try_files $uri = 404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass pharmacy_api_app:9000;
+        fastcgi_pass SERVICE_APP_NAME:9000;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param REQUEST_URI $request_uri;
