@@ -91,12 +91,16 @@ main() {
   edit_content "SERVICE_APP_NAME" $SERVICE_APP_NAME $nginx_conf_path
 
   echo "\nBuild Docker environment ..."
-  docker-compose up --build -d
+  docker-compose build
+  docker-compose up $SERVICE_APP_NAME -d
   docker-compose exec $SERVICE_APP_NAME sh -c "$COMMAND_INIT_LARAVEL"
   mv ./$LARAVEL_TEMP_FOLDER/* .
   mv ./$LARAVEL_TEMP_FOLDER/.* .
   rm -r $LARAVEL_TEMP_FOLDER
   rm -rf .git
+  if [ -d .idea ]; then
+    rm -rf .idea
+  fi
   if [ ! -d vendor ]; then
     docker-compose exec $SERVICE_APP_NAME sh -c "composer install"
   fi
