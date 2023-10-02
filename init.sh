@@ -56,16 +56,16 @@ main() {
 
   new_line
 
-  convert_file_to_lf
-
-  new_line
-
   . "$PWD/$config_path"
 
   echo 'Create docker-compose.yml ...'
 
   create_file_with_tmp $dco_path
   create_file_with_tmp $nginx_conf_path
+
+  new_line
+
+  convert_file_to_lf
 
   new_line
   echo 'Replace data ...'
@@ -96,10 +96,16 @@ main() {
   mv ./$LARAVEL_TEMP_FOLDER/* .
   mv ./$LARAVEL_TEMP_FOLDER/.* .
   rm -r $LARAVEL_TEMP_FOLDER
-  echo "./docker-compose.yml
-        ./.docker/nginx.conf
-        ./config.txt" >> .gitignore
+  echo "./docker-compose.yml\n./.docker/nginx.conf\n./config.txt" >> .gitignore
+  if [ ! -d vendor ]; then
+    docker-compose exec $SERVICE_APP_NAME sh -c "composer install"
+  fi
+  if [ ! -f .env ]; then
+    docker-compose exec $SERVICE_APP_NAME sh -c "cp .env.example .env && php artisan key:generate"
+  fi
+  docker-compose down
 
+  new_line
   echo "\nDone!\n"
 }
 
