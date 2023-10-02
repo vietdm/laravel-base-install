@@ -36,7 +36,8 @@ The **Laravel Base Project** is a starter template designed to simplify the proc
     cp config.txt.tmp config.txt
     ```
 
-5. You can use this template to initialize Docker for an existing project on GitHub by replacing LARAVEL_TEMP_FOLDER with the GitHub project name and COMMAND_INIT_LARAVEL with the git clone command for the project in ```config.txt```.
+5. You can install a lower version of Laravel by changing ```COMMAND_INIT_LARAVEL``` in ```config.txt```. By default, it installs the latest version.
+
 
 6. Run the initialization script to create your Laravel project and configure Docker:
 
@@ -45,6 +46,10 @@ The **Laravel Base Project** is a starter template designed to simplify the proc
     ```
 
 7. Start developing your Laravel application!
+
+   ```bash
+    docker-compose up -d
+    ```
 
 For more details and customization options, please refer to the project documentation.
 
