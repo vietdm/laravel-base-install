@@ -96,7 +96,7 @@ main() {
   mv ./$LARAVEL_TEMP_FOLDER/* .
   mv ./$LARAVEL_TEMP_FOLDER/.* .
   rm -r $LARAVEL_TEMP_FOLDER
-  echo "./docker-compose.yml\n./.docker/nginx.conf\n./config.txt" >> .gitignore
+  rm -rf .git
   if [ ! -d vendor ]; then
     docker-compose exec $SERVICE_APP_NAME sh -c "composer install"
   fi
