@@ -2,7 +2,7 @@
 
 dco_path="docker-compose.yml"
 nginx_conf_path=".docker/nginx.conf"
-config_path="config.txt"
+config_path=".env-init"
 
 new_line() {
   echo "\n====\n"
@@ -17,10 +17,10 @@ require_file_exist() {
 
 check_function_system_exist() {
   if hash $1 2>/dev/null; then
-      echo "Function System $1 exist!"
+    echo "Function System $1 exist!"
   else
-      echo "Please install $1"
-      exit 1
+    echo "Please install $1"
+    exit 1
   fi
 }
 
@@ -58,12 +58,12 @@ main() {
 
   . "$PWD/$config_path"
 
-  echo 'Create docker-compose.yml ...'
+  # echo 'Create docker-compose.yml ...'
 
-  create_file_with_tmp $dco_path
-  create_file_with_tmp $nginx_conf_path
+  # create_file_with_tmp $dco_path
+  # create_file_with_tmp $nginx_conf_path
 
-  new_line
+  # new_line
 
   convert_file_to_lf
 
