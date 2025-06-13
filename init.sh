@@ -26,7 +26,7 @@ check_function_system_exist() {
 
 convert_file_to_lf() {
   echo "Start convert file to LF ..."
-  dos2unix "config.txt"
+  dos2unix ".env-init"
   dos2unix "docker-compose.yml"
   dos2unix ".docker/nginx.conf"
   sleep .5
